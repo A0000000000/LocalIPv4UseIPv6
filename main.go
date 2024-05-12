@@ -28,6 +28,7 @@ func main() {
 
 	go revDataFromRemote(ifce)
 	go readData(ifce, config)
+	go createHttpServer(config)
 
 	sig := make(chan os.Signal, 3)
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGABRT, syscall.SIGHUP)
