@@ -29,7 +29,7 @@ func progressConnection(ifce *water.Interface, conn net.Conn) {
 	defer conn.Close()
 	dataSize := make([]byte, 4)
 	conn.Read(dataSize)
-	log.Printf("read data size = %d, prepare send to tap device", dataSize)
+	log.Printf("read data size = %d, prepare send to tap device\n", binary.LittleEndian.Uint32(dataSize))
 	frameData := make([]byte, binary.LittleEndian.Uint32(dataSize))
 	conn.Read(frameData)
 	writeData(ifce, frameData)
@@ -58,7 +58,7 @@ func sendDataToRemote(data []byte, address string) {
 	}
 	defer conn.Close()
 	targetData := append(dataSize, data...)
-	targetSize := len(dataSize)
+	targetSize := len(targetData)
 	log.Printf("prepare send data to remote, size: %d\n", targetSize)
 	for targetSize > 0 {
 		n, err := conn.Write(targetData)
