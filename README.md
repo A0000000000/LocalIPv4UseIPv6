@@ -1,3 +1,5 @@
+# 已过时，新项目详见[IPv4ByIPv6](https://github.com/A0000000000/IPv4ByIPv6)
+
 # 使用公网IPv6进行内网IPv4组网
 * 仅支持Linux系统（借助于Linux下的tun/tap实现）
 * 仅支持arp与ip协议
